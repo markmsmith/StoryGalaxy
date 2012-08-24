@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Story Galaxy</title>
+
+    <script type="text/javascript" src="https://rally1.rallydev.com/apps/2.0p3/sdk-debug.js"></script>
+
+    <script type="text/javascript">
+        Rally.onReady(function() {
+            Rally.loadScripts([
+                "three.js",
+                "three_monkey_patch.js",
+                "Detector.js",
+                "App.js"
+            ], function() {
+                Rally.launchApp('CustomApp', {
+                    name: 'Story Galaxy'
+                })
+            }, true);
+        });
+    </script>
+
+<link rel="stylesheet" type="text/css" href="app.css">
+</head>
+<body></body>
+</html>

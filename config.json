@@ -1,0 +1,14 @@
+{
+    "name": "Story Galaxy",
+    "className": "CustomApp",
+    "sdk": "2.0p3",
+    "javascript": [
+        "three.js",
+        "three_monkey_patch.js",
+        "Detector.js",
+        "App.js"
+    ],
+    "css": [
+        "app.css"
+    ]
+}
