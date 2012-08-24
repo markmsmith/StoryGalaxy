@@ -6,10 +6,10 @@
 	THREE.Ray.prototype.distanceFromIntersection = function ( origin, direction, position ) {
 
 		v0.sub( position, origin );
-		dot = v0.dot( direction );
+		var dot = v0.dot( direction );
 
-		intersect = v1.add( origin, v2.copy( direction ).multiplyScalar( dot ) );
-		distance = position.distanceTo( intersect );
+		var intersect = v1.add( origin, v2.copy( direction ).multiplyScalar( dot ) );
+		var distance = position.distanceTo( intersect );
 
 		return distance;
 
@@ -20,6 +20,9 @@
 		var vertices = object.geometry.vertices;
 		var point, distance, intersect;
 
+		//TODO make this configurable (has to match particle size)
+		var threshold = 10;
+
 		for ( var i = 0; i < vertices.length; i ++ ) {
 
 			point = vertices[ i ];
@@ -29,7 +32,7 @@
 				object.matrixWorld.multiplyVector3( point.clone() )
 			);
 
-			if ( distance > this.threshold ) {
+			if ( distance > threshold ) {
 				continue;
 			}
 

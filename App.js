@@ -163,7 +163,7 @@ Ext.define('CustomApp', {
         // this.scene.add(lines);
 
         // make the camera controllable with the mouse
-        //this.mouseControls = new THREE.TrackballControls(this.camera, this.glRenderer.domElement);
+        this.mouseControls = new THREE.TrackballControls(this.camera, this.glRenderer.domElement);
 
         // draw the scene
         this.glRenderer.render(this.scene, this.camera);
@@ -172,7 +172,7 @@ Ext.define('CustomApp', {
         this.updateCallback = Ext.bind(this.update, this);
         this.update(null);
 
-        holder.getEl().on('click', this.handleClick, this);
+        holder.getEl().on('mouseup', this.handleClick, this);
 
         
         // this.mouseControls.rotateSpeed = 1.0;
@@ -210,7 +210,7 @@ Ext.define('CustomApp', {
         // // you need to update lookAt every frame
         // this.camera.lookAt(this.scene.position);
 
-        //this.mouseControls.update();
+        this.mouseControls.update();
         this.glRenderer.render(this.scene, this.camera);
 
         requestAnimationFrame(this.updateCallback, this.glRenderer.domElement);
@@ -244,6 +244,7 @@ Ext.define('CustomApp', {
         // with that ray direction and see if it hits the story
         var cameraPos = this.camera.position;
         var ray = new THREE.Ray(cameraPos, vector.subSelf(cameraPos).normalize() );
+        // add in particle system intersection support
         ray.monkeyPatch();
         var intersects = ray.intersectObject(this.particles);
 
