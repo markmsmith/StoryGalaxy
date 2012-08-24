@@ -12,13 +12,36 @@ Ext.define('CustomApp', {
             width: 800,
             height: 600,
             margin: '0 0 200 0'
-        }
-    ],
-
-    buttons: [
+        },
         {
-            itemId: 'resetView',
-            text: 'Reset View'
+            xtype: 'form',
+            width: 800,
+            defaultType: 'textfield',
+            defaults:{
+                width: 700
+            },
+            items: [
+                {
+                    itemId: 'formattedID',
+                    fieldLabel: 'FormattedID'
+                },
+                {
+                    itemId: 'name',
+                    fieldLabel: 'Name'
+                },
+                {
+                    itemId: 'kanbanState',
+                    fieldLabel: 'KanbanState'
+                },
+                {
+                    itemId: 'validFrom',
+                    fieldLabel: 'Valid From'
+                },
+                {
+                    itemId: 'validTo',
+                    fieldLabel: 'Valid To'
+                }
+            ]
         }
     ],
 
@@ -56,7 +79,7 @@ Ext.define('CustomApp', {
                     }
                 ],
                 hydrate: ['KanbanState'],
-                fetch: ['ObjectID', '_UnformattedID', 'Name', 'KanbanState'],
+                fetch: ['ObjectID', '_UnformattedID', 'Name', 'KanbanState', '_ValidFrom', '_ValidTo'],
 
                 // look for snapshots of stories in the current project
                 filters: [
@@ -256,6 +279,12 @@ Ext.define('CustomApp', {
     },
 
     displayStory: function(story){
+        this.down('#formattedID').setValue("S"+ story["_UnformattedID"]);
+        this.down('#name').setValue(story.Name);
+        this.down('#kanbanState').setValue(story.KanbanState);
+        this.down('#validFrom').setValue(story["_ValidFrom"]);
+        this.down('#validTo').setValue(story["_ValidTo"]);
+
         console.log("Selected story "+ story["ObjectID"]);
     }
 
